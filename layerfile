@@ -1,0 +1,15 @@
+FROM vm/ubuntu:18.04
+
+RUN apt-get install curl apt-transport-https ca-certificates software-properties-common
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+RUN apt update
+RUN apt-cache policy docker-ce
+RUN apt install docker-ce
+
+COPY . .
+
+RUN docker build -t image .
+RUN docker run -d -p 80:80 image
+
+EXPOSE WEBSITE http://localhost:80
