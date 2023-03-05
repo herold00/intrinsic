@@ -1,6 +1,5 @@
 FROM node:12-alpine
 RUN apk -U upgrade --available
-WAIT
 RUN apk add --no-cache openrc python3-dev musl-dev g++ linux-headers libev-dev caddy
 COPY . .
 RUN python3 -m ensurepip --upgrade
