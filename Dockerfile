@@ -1,5 +1,6 @@
 FROM node:12-alpine
 RUN apk -U upgrade --available
+WAIT
 RUN apk add --no-cache openrc python3-dev musl-dev g++ linux-headers libev-dev caddy
 COPY . .
 RUN python3 -m ensurepip --upgrade
@@ -14,5 +15,5 @@ RUN pdm run python3 manage.py migrate
 RUN pdm run python3 manage.py createsuperuser --username heroldzer0 --email 00@node00.net
 ENV DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
 RUN echo "secret is: $DJANGO_SUPERUSER_PASSWORD"
-RUN pdm run python3 manage.py runserver localhost:80
+RUN pdm run python3 circus circus.ini
 EXPOSE 80
