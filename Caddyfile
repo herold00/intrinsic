@@ -1,0 +1,11 @@
+node00.net, www.node00.net {
+	tls /etc/ssl/node00/certs/certificate.pem /etc/ssl/node00/private/key.pem
+	encode zstd gzip
+	reverse_proxy 0.0.0.0:9223
+}
+
+jenoisexpresses.me, www.jenoisexpresses.me {
+	tls /etc/ssl/jenoisexpresses/certs/certificate.pem /etc/ssl/jenoisexpresses/private/key.pem
+	encode zstd gzip
+	reverse_proxy 0.0.0.0:9224
+}
