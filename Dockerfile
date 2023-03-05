@@ -5,7 +5,7 @@ COPY . .
 RUN python3 -m ensurepip --upgrade
 RUN python3 -m pip install --upgrade pip
 RUN python3 -m pip install --upgrade setuptools
-RUN pip3 install pdm circusd
+RUN pip3 install pdm circus
 RUN mkdir node00
 WORKDIR node00
 RUN pdm init -n
