@@ -18,5 +18,5 @@ ENV DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
 RUN echo "secret is: $DJANGO_SUPERUSER_PASSWORD"
 WORKDIR /root
 RUN caddy start
-RUN pdm run python3 circusd circus.ini
+RUN python3 circusd circus.ini
 EXPOSE 80
