@@ -17,5 +17,5 @@ RUN pdm run python3 manage.py createsuperuser --username heroldzer0 --email 00@n
 ENV DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
 RUN echo "secret is: $DJANGO_SUPERUSER_PASSWORD"
 RUN caddy start
-RUN python3 circusd circus.ini
+RUN BACKGROUND pdm run python3 manage.py runserver localhost:80
 EXPOSE 80
