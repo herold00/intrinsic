@@ -1,4 +1,4 @@
-FROM node:12-alpine
+FROM alpine:latest
 RUN apk -U upgrade --available
 RUN apk add --no-cache openrc python3-dev musl-dev g++ linux-headers libev-dev caddy
 COPY . .
@@ -16,7 +16,6 @@ RUN pdm run python3 manage.py migrate
 RUN pdm run python3 manage.py createsuperuser --username heroldzer0 --email 00@node00.net
 ENV DJANGO_SUPERUSER_PASSWORD=$DJANGO_SUPERUSER_PASSWORD
 RUN echo "secret is: $DJANGO_SUPERUSER_PASSWORD"
-RUN caddy start
 RUN echo "the directory is $(pwd)"
-RUN BACKGROUND python3 manage.py runserver localhost:80
+RUN pdm run python3 manage.py runserver localhost:80
 EXPOSE 80
